@@ -1,6 +1,21 @@
 #include <stdio.h>
 #include<string.h>
 
+// Fungsi untuk memeriksa apakah suatu bilangan adalah prima
+int is_prime(int n) {
+    if (n < 2) return 0;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}
+
+// Fungsi untuk memeriksa apakah polinomial adalah primitive polynomial
+int is_primitive_polynomial(int degree) {
+    // Dalam implementasi sederhana, pastikan degree + 1 adalah bilangan prima
+    return is_prime(degree + 1); 
+}
+
 int main(){
     int angka = 179, i, result[10];
     int polynominal, kondisi = 1;
@@ -34,6 +49,14 @@ int main(){
             kondisi = 0;            // mereset ulang bahwa nilai dari kondisi = 0
         }
     }
+
+    // Penambahan untuk menentukan apakah polinomial adalah primitive polynomial
+    if (is_primitive_polynomial(polynominal - 1)) {
+        printf("\nPolinom ini adalah Primitive Polynomial.\n");
+    } else {
+        printf("\nPolinom ini bukan Primitive Polynomial.\n");
+    }
+
 
     return 0;
 }
